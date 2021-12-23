@@ -1,0 +1,7 @@
+channel : "ch0003"
+switch : "idp0000"
+state : "odp0000"
+host : ""
+user : ""
+password : ""
+ap : "00000000-0000-0000-0000-000000000000"
