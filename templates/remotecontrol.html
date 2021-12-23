@@ -7,7 +7,9 @@
 <body>
     <h1>Welcome to the House Remote</h1>
     <ul>
-        <li>Office <button onclick="location.href='?device=ABB700D68933&state=1';">on</button><button onclick="location.href='?device=ABB700D68933&state=0';">off</button></li>
+        {% for device in devices %}
+        <li>{{ device['description'] }} <button onclick="location.href='?device={{ device['name'] }}&state=1';">on</button><button onclick="location.href='?device=ABB700D68933&state=0';">off</button></li>
+        {% endfor %}
     </ul>
 </body>
 

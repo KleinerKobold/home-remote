@@ -10,6 +10,7 @@ app = Flask(__name__)
 with open('config.yaml') as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
         logger.info(f"config loaded: {config.keys()}")
+        logger.info(f"list of devices: {config['devices']}")
 
 def switchState(device:str, state: int):
     url = f"http://{config['user']}:{config['password']}@{config['host']}/fhapi/v1/api/rest/datapoint/{config['ap']}/{device}.{config['channel']}.{config['switch']}"  
@@ -29,5 +30,5 @@ def hello():
     logger.info(f"received [device: {device}, state: {state}]")
     if device != None and state != None:
         switchState(device,state)
-
-    return render_template("remotecontrol.html",title="Remote Control")
+    
+    return render_template("remotecontrol.html",title="Remote Control", devices=config['devices'])

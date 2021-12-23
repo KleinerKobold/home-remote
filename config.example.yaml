@@ -5,3 +5,6 @@ host : ""
 user : ""
 password : ""
 ap : "00000000-0000-0000-0000-000000000000"
+devices:
+  - name: "ABB700D68933"
+    description: "Büro Licht"
