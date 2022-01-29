@@ -1,16 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/914f15070f.js" crossorigin="anonymous"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <title>{{title}}</title>
 </head>
 <body>
     <h1>Welcome to the House Remote</h1>
-    <ul>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+              <th scope="col">Beschreibung</th>
+              <th scope="col">Device Name</th>
+              <th scope="col">Status</th>
+              <th scope="col">Aktion</th>
+              <th scope="col">Debug</th>
+            </tr>
+          </thead>
+          <tbody>
         {% for device in devices %}
-        <li>{{ device['description'] if device['description'] else device['name'] }} <button onclick="location.href='?device={{ device['name'] }}&state=1';">on</button><button onclick="location.href='?device=ABB700D68933&state=0';">off</button></li>
+        <tr>
+            <td>
+                {{ device['description'] if device['description'] else device['name'] }}  
+            </td>
+            <td>
+                {{ device['name'] }}  
+            </td>
+            {% if device['state'] == "1" %}
+            <td><i class="fas fa-lightbulb"></i></td>
+            <td><button style="background-color:grey" onclick="location.href='?device={{ device['name'] }}&state=1';">on</button>
+                <button onclick="location.href='?device=ABB700D68933&state=0';">off</button></li>
+            </td>
+            {% else %}
+            <td><i class="far fa-lightbulb"></i></td>
+            <td><button onclick="location.href='?device={{ device['name'] }}&state=1';">on</button>
+            <button style="background-color:grey" onclick="location.href='?device=ABB700D68933&state=0';">off</button></li></td>
+            {% endif %}
+            <td>{{ device['state'] }}</td>
+        </tr>
         {% endfor %}
-    </ul>
+          </tbody>
+        </table>
 </body>
 
 </html>
